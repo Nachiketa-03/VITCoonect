@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIConnect Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Add back button -->
+    <div class="back-button">
+        <a href="/dashboard" class="back-to-dashboard">
+            <i class="fas fa-chevron-left"></i>
+            Back
+        </a>
+    </div>
+
+    <!-- Header with static logo and name -->
+    <header>
+        <img src="logo.png" alt="VIConnect Logo" class="logo">
+        <h1>VIConnect Chatbot</h1>
+    </header>
+
+    <!-- Chat box for messages -->
+    <div class="chat-box" id="chatBox"></div>
+
+    <!-- Input area for user messages -->
+    <div class="input-area">
+        <input 
+            type="text" 
+            id="userInput" 
+            placeholder="Type your message..." 
+            autocomplete="off"
+        >
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

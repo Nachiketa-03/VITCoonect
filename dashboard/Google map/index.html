@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIT Vellore Interactive Map</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="back-button">
+        <a href="/dashboard" onclick="goBack(); return false;">
+            <i class="fas fa-chevron-left"></i>
+            <span>Back </span>
+        </a>
+    </div>
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="logo">VIConnect</div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search location..." id="search">
+            </div>
+            <div class="recents">
+                <h2>Recents:</h2>
+                <div class="location" onclick="focusLocation(0)">VIT Main Building</div>
+                <div class="location" onclick="focusLocation(1)">Silver Jubilee Tower</div>
+                <div class="location" onclick="focusLocation(2)">Technology Tower</div>
+                <div class="location" onclick="focusLocation(3)">Men’s Hostel Block A</div>
+                <div class="location" onclick="focusLocation(4)">Women’s Hostel Block B</div>
+                <div class="location" onclick="focusLocation(5)">VIT Lawn</div>
+            </div>
+        </div>
+        <div id="map"></div>
+    </div>
+
+    <!-- Google Maps API with Places library -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgkWZS6mMQDuBs3OiBXehjrCOKuMJLeYU&libraries=places&callback=initMap" async defer></script>
+    <script src="script.js"></script>
+</body>
+</html>

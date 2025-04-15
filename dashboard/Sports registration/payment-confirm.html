@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmation</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="confirmation-container">
+        <h2>Confirm Payment</h2>
+        <div id="payment-details"></div>
+        <div class="confirmation-buttons">
+            <button onclick="confirmPayment(true)" class="success-btn">Confirm Payment</button>
+            <button onclick="confirmPayment(false)" class="failure-btn">Cancel Payment</button>
+        </div>
+    </div>
+    <script>
+        // Get payment details from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const paymentData = JSON.parse(decodeURIComponent(urlParams.get('data')));
+        
+        // Display payment details
+        document.getElementById('payment-details').innerHTML = `
+            <p><strong>Facility:</strong> ${paymentData.facilityName}</p>
+            <p><strong>Amount:</strong> ₹${paymentData.amount}/-</p>
+            <p><strong>Transaction ID:</strong> ${paymentData.transactionId}</p>
+        `;
+
+        function confirmPayment(isConfirmed) {
+            // Send message to parent window
+            window.opener.postMessage({
+                transactionId: paymentData.transactionId,
+                success: isConfirmed
+            }, '*');
+            window.close();
+        }
+    </script>
+</body>
+</html> 

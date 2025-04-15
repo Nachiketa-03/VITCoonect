@@ -1,0 +1,694 @@
+/* Remove the CDN link - it should be in HTML file only */
+
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    min-height: 100vh;
+    display: flex;
+}
+
+/* Side Panel Styles */
+.side-panel {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: var(--side-panel-bg);
+    color: white;
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow: hidden;
+    transition: width 0.3s ease;
+}
+
+/* Collapsed state */
+.side-panel.collapsed {
+    width: 50px;
+    padding: 15px 5px;
+}
+
+/* Navigation items - base styles */
+.nav-item,
+.theme-toggle,
+.logout-btn {
+    display: flex;
+    align-items: center;
+    padding: 6px 15px;
+    margin: 1px 0;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    height: 36px;
+}
+
+/* Icon base styles */
+.nav-item i,
+.theme-toggle i,
+.logout-btn i {
+    min-width: 20px;
+    font-size: 16px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+/* Hover effect for all buttons */
+.nav-item:hover,
+.theme-toggle:hover,
+.logout-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(2px);
+}
+
+/* Collapsed state styles */
+.side-panel.collapsed {
+    width: 50px;
+    padding: 15px 5px;
+}
+
+/* All buttons in collapsed state */
+.side-panel.collapsed .nav-item,
+.side-panel.collapsed .theme-toggle,
+.side-panel.collapsed .logout-btn {
+    justify-content: center;
+    padding: 6px 0;
+    width: 36px;
+    margin: 1px auto;
+    height: 36px;
+}
+
+/* All icons in collapsed state */
+.side-panel.collapsed .nav-item i,
+.side-panel.collapsed .theme-toggle i,
+.side-panel.collapsed .logout-btn i {
+    margin: 0;
+    font-size: 18px;
+    width: auto;
+}
+
+/* Hide all text in collapsed state */
+.side-panel.collapsed .nav-item span,
+.side-panel.collapsed .theme-toggle span,
+.side-panel.collapsed .logout-btn span,
+.side-panel.collapsed .user-name,
+.side-panel.collapsed .user-info {
+    display: none;
+    width: 0;
+}
+
+/* Profile section wrapper */
+.user-profile {
+    margin-top: 45px;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+}
+
+/* Decorative frame for profile picture */
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Outer decorative frame */
+.profile-pic::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ffd700, #fff, #ffd700);
+    z-index: 1;
+    animation: rotateGradient 4s linear infinite;
+}
+
+/* Inner frame */
+.profile-pic::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 50%;
+    background: var(--side-panel-bg);
+    z-index: 2;
+}
+
+/* Image container */
+.profile-pic-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 3;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effects */
+.profile-pic:hover img {
+    transform: scale(1.05);
+}
+
+/* Collapsed state */
+.side-panel.collapsed .profile-pic {
+    width: 35px;
+    height: 35px;
+    margin: 0 auto 15px;
+}
+
+.side-panel.collapsed .profile-pic::before {
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+}
+
+.side-panel.collapsed .profile-pic::after {
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+}
+
+/* Animation for the gradient */
+@keyframes rotateGradient {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Edit overlay refinements */
+.edit-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 8px 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 4;
+}
+
+.profile-pic:hover .edit-overlay {
+    opacity: 1;
+}
+
+.edit-overlay label {
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.edit-overlay i {
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.user-name {
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 15px;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation Styles */
+.side-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    margin-top: 5px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.nav-item:hover, .nav-item.active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-item i {
+    margin-right: 15px;
+    font-size: 20px;
+    min-width: 20px;
+    text-align: center;
+}
+
+.nav-item span {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.side-panel.expanded .nav-item span {
+    opacity: 1;
+}
+
+.user-profile .user-info {
+    display: none;
+}
+
+.side-panel.expanded .user-profile .user-info {
+    display: block;
+}
+
+/* Logout Section */
+.logout-section {
+    margin-top: auto;
+    margin-bottom: 15px;
+    padding-top: 5px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    padding: 6px 15px;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    height: 36px;
+}
+
+.logout-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(2px);
+}
+
+/* Main Content Styles */
+.main-content {
+    flex: 1;
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.main-content.shifted {
+    margin-left: 50px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Card Styles */
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.inner-box {
+    margin-bottom: 10px;
+}
+
+.image {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card p {
+    color: #04498d;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #04498d;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .side-panel {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .side-panel.active {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.settings-form {
+    padding: 20px;
+}
+
+.settings-form .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.settings-form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.settings-form .swal2-input {
+    margin: 5px 0;
+}
+
+.user-name {
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 10px;
+    color: #ffffff;
+}
+
+/* Theme Variables */
+:root {
+    /* Light Theme (default) */
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --text-secondary: #666666;
+    --side-panel-bg: #04498d;
+    --card-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    --hover-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    --border-color: #e0e0e0;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --card-bg: #2d2d2d;
+    --text-color: #ffffff;
+    --text-secondary: #b0b0b0;
+    --side-panel-bg: #0f2851;
+    --card-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    --hover-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    --border-color: #404040;
+}
+
+/* Apply theme colors */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.side-panel {
+    background-color: var(--side-panel-bg);
+}
+
+.card {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    box-shadow: var(--card-shadow);
+}
+
+.card:hover {
+    box-shadow: var(--hover-shadow);
+}
+
+.card p {
+    color: var(--text-color);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle i {
+    min-width: 24px;
+    font-size: 20px;
+    text-align: center;
+    margin-right: 15px;
+}
+
+/* Dark/Light icons */
+.dark-icon,
+.light-icon {
+    transition: display 0.3s ease;
+}
+
+/* Collapsed state for theme toggle */
+.side-panel.collapsed .theme-toggle {
+    justify-content: center;
+    padding: 12px 0;
+    width: 40px;
+    margin: 0 auto;
+}
+
+.side-panel.collapsed .theme-toggle i {
+    margin: 0;
+    font-size: 18px;
+}
+
+.side-panel.collapsed .theme-toggle span {
+    display: none;
+}
+
+/* Hamburger button */
+.hamburger-btn {
+    position: fixed;
+    width: 50px;          /* Match side panel width */
+    height: 40px;         /* Fixed height */
+    left: 0;             /* Align with side panel */
+    top: 0;              /* Align to top */
+    z-index: 1001;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.hamburger-btn i {
+    font-size: 20px;
+}
+
+/* Adjust hamburger position when panel is collapsed */
+.side-panel.collapsed ~ .hamburger-btn,
+.side-panel.collapsed .hamburger-btn {
+    width: 50px;          /* Match collapsed panel width */
+    left: 0;
+}
+
+/* Profile section - adjusted top margin */
+.user-profile {
+    margin-top: 50px;    /* Increased to make space for centered hamburger */
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Side Panel base */
+.side-panel {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: var(--side-panel-bg);
+    transition: width 0.3s ease;
+}
+
+/* Collapsed state */
+.side-panel.collapsed {
+    width: 50px;
+    padding: 0 5px;
+}
+
+/* Hide all text/labels in collapsed state */
+.side-panel.collapsed .nav-item span,
+.side-panel.collapsed .theme-toggle span,
+.side-panel.collapsed .logout-btn span {
+    display: none;
+    width: 0;
+    opacity: 0;
+}
+
+/* Center icons in collapsed state */
+.side-panel.collapsed .nav-item,
+.side-panel.collapsed .theme-toggle,
+.side-panel.collapsed .logout-btn {
+    justify-content: center;
+    padding: 15px 0;
+}
+
+/* Icon styling in collapsed state */
+.side-panel.collapsed .nav-item i,
+.side-panel.collapsed .theme-toggle i,
+.side-panel.collapsed .logout-btn i {
+    margin: 0;
+    font-size: 20px;
+}
+
+/* Remove any extra spacing */
+.side-panel.collapsed .nav-item::before,
+.side-panel.collapsed .nav-item::after {
+    display: none;
+}
+
+/* Adjust main content margin */
+.main-content {
+    margin-left: 250px;
+    transition: margin-left 0.3s ease;
+}
+
+.main-content.shifted {
+    margin-left: 50px;
+}
+
+/* Logout section positioning */
+.logout-section {
+    margin-top: auto;    /* Push to bottom */
+    margin-bottom: 15px; /* Add space from bottom */
+    padding-top: 5px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Logout button styling */
+.logout-btn {
+    display: flex;
+    align-items: center;
+    padding: 6px 15px;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    height: 36px;
+}
+
+/* Collapsed state adjustments */
+.side-panel.collapsed .logout-section {
+    margin-bottom: 15px;  /* Keep consistent in collapsed state */
+    padding: 0;
+    border-top: none;    /* Remove border in collapsed state */
+}
+
+.side-panel.collapsed .logout-btn {
+    justify-content: center;
+    padding: 6px 0;
+    width: 36px;
+    margin: 1px auto;
+}
+
+/* Hover effect */
+.logout-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(2px);
+}
+
+/* Icon styling */
+.logout-btn i {
+    min-width: 20px;
+    font-size: 16px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.side-panel.collapsed .logout-btn i {
+    margin-right: 0;
+}

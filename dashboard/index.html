@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIConnect</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-material-ui/material-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="script.js" defer></script> 
+</head>
+<body>
+    <!-- Add hamburger button -->
+    <button class="hamburger-btn" onclick="togglePanel()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Update side panel class -->
+    <div class="side-panel collapsed" id="sidePanel">
+        <div class="user-profile">
+            <div class="profile-pic">
+                <div class="profile-pic-inner">
+                    <img src="default-avatar.png" alt="Profile Picture" id="profilePic">
+                    <div class="edit-overlay">
+                        <label for="profileUpload">
+                            <i class="fas fa-edit"></i>
+                            <span>Edit</span>
+                        </label>
+                        <input type="file" id="profileUpload" accept="image/*" style="display: none;">
+                    </div>
+                </div>
+            </div>
+            <p class="user-name" id="userEmail"></p>
+        </div>
+        
+        <nav class="side-nav">
+            <a href="#" class="nav-item" onclick="openChatbot()">
+                <i class="fas fa-robot"></i>
+                <span>AI ChatBot</span>
+            </a>
+            <a href="#" class="nav-item" onclick="openHostel()">
+                <i class="fas fa-home"></i>
+                <span>Hostel and Mess</span>
+            </a>
+            <a href="#" class="nav-item" onclick="openCgpaCalculator()">
+                <i class="fas fa-calculator"></i>
+                <span>CGPA Calculator</span>
+            </a>
+            <a href="#" class="nav-item" onclick="openmap()">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Navigation</span>
+            </a>
+            <a href="#" class="nav-item" onclick="showSection('community')">
+                <i class="fas fa-users"></i>
+                <span>Community</span>
+            </a>
+            <a href="#" class="nav-item" onclick="playo()">
+                <i class="fas fa-running"></i>
+                <span>Sports Registration</span>
+            </a>
+            <a href="#" class="nav-item theme-toggle" onclick="toggleTheme(event)">
+                <i class="fas fa-moon dark-icon"></i>
+                <i class="fas fa-sun light-icon" style="display: none;"></i>
+                <span>Dark Mode</span>
+            </a>
+            <a href="#" class="nav-item" onclick="openSettings()">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="logout-section">
+            <a href="#" class="logout-btn" onclick="confirmLogout(event)">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Modified Container -->
+    <div class="main-content">
+        <div class="container">
+            <!-- Remove the header and logout button as they're now in side panel -->
+            <div class="grid">
+                <div class="card" id="chatbot" data-sound="click2" onclick="openChatbot()">
+                    <div class="inner-box">
+                        <div class="image">
+                            <img src="chatbot.png" alt="AI ChatBot">
+                        </div>
+                    </div>
+                    <p>AI ChatBot</p>
+                </div>
+                <div class="card" id="hostel" data-sound="click2" onclick="openHostel()">
+                    <div class="inner-box">
+                        <div class="image">
+                            <img src="hostel.jpg" alt="Hostel and Mess">
+                        </div>
+                    </div>
+                    <p>Hostel and Mess</p>
+                </div>
+                <div class="card" id="cgpa" data-sound="click2" onclick="openCgpaCalculator()">
+                    <div class="inner-box">
+                        <div class="image">
+                            <img src="CGPA.jpg" alt="CGPA Calculator">
+                        </div>
+                    </div>
+                    <p>CGPA Calculator</p>
+                </div>
+                <div class="card" id="navigation" data-sound="click2" onclick="openmap()">
+                    <div class="inner-box">
+                        <div class="image">
+                            <img src="navigation.jpg" alt="Navigation">
+                        </div>
+                    </div>
+                    <p>Navigation</p>
+                </div>
+                <div class="card" id="playo" data-sound="click2" onclick="playo()">
+                    <div class="inner-box">
+                        <div class="image">
+                            <img src="playo.jpeg" alt="PlayO">
+                        </div>
+                    </div>
+                    <p>PlayO</p>
+                </div>
+                <div class="card" id="community" data-sound="click2">
+                    <div class="inner-box">
+                        <div class="image">
+                            <img src="community.jpg" alt="Community">
+                        </div>
+                    </div>
+                    <p>Community</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add these scripts before closing body tag -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Facilities Registration</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <!-- Updated QR code library to local version -->
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+</head>
+<body>
+    <h1>Sports Facilities Registration</h1>
+    <div id="facilities-container"></div>
+
+    <!-- Payment Modal with QR -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <h2>Scan QR Code to Pay</h2>
+            <div id="qrcode"></div>
+            <p class="amount-text">Amount to pay: ₹<span id="paymentAmount">0</span>/-</p>
+            <p class="scan-instruction">Scan with your phone's camera</p>
+            <div class="test-buttons">
+                <button onclick="simulatePayment(true)" class="success-btn">Test Success</button>
+                <button onclick="simulatePayment(false)" class="failure-btn">Test Failure</button>
+            </div>
+            <button onclick="closePaymentModal()" class="cancel-btn">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Receipt Modal -->
+    <div id="receiptModal" class="modal">
+        <div class="modal-content">
+            <div id="receiptContent"></div>
+            <button onclick="closeModal()" class="register-btn">Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

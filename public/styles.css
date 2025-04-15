@@ -1,0 +1,509 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(90deg, #e0e7ff, #ffffff);
+    background-size: 200% 200%;
+    animation: gradientAnimation 15s ease infinite;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: containerAnimation 1.5s ease-in-out;
+}
+
+@keyframes containerAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    animation:linear;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.logo h1 {
+    font-size: 32px;
+    color: #6200ea;
+    animation: textAnimation 2s ease-in-out infinite alternate;
+}
+
+@keyframes textAnimation {
+    0% {
+        color: #6200ea;
+    }
+    100% {
+        color: #3700b3;
+    }
+}
+
+.login-container {
+    display: flex;
+    width: 800px;
+    height: 450px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.sign-in, .sign-up {
+    width: 50%;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.sign-in {
+    background-color: #ffffff;
+    background-image: url('Screenshot 2024-08-02 163401.png');
+    background-size: cover;
+}
+
+.sign-in h2 {
+    margin: 0 0 20px;
+    font-size: 24px;
+    color: #6200ea;
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.sign-in form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sign-in input {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.sign-in button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #6200ea;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    width: 80%;
+    margin-bottom: 10px;
+    animation: fadeIn 2.5s ease-in-out;
+}
+
+.sign-in button.google-signin {
+    background-color: #db4437;
+    margin-bottom: 15px;
+}
+
+.sign-in button:hover {
+    background-color: #3700b3;
+    transform: scale(1.05);
+}
+
+.sign-in a {
+    color: #6200ea;
+    text-decoration: none;
+    font-size: 14px;
+    animation: fadeIn 3s ease-in-out;
+}
+
+.or {
+    text-align: center;
+    margin: 10px 0;
+    color: #888;
+    animation: fadeIn 3.5s ease-in-out;
+}
+
+.sign-up {
+    background-color: #6200ea;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-up h2 {
+    margin: 0 0 20px;
+    font-size: 24px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.sign-up p {
+    margin: 0 0 20px;
+    text-align: center;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.sign-up form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sign-up input {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    width: 80%;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.sign-up button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #6200ea;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    animation: fadeIn 2.5s ease-in-out;
+}
+
+.sign-up button:hover {
+    background-color: #e0e7ff;
+    transform: scale(1.05);
+}
+
+/* Form transition effects */
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+input {
+    transition: all 0.3s ease !important;
+}
+
+input:focus {
+    box-shadow: 0 0 10px rgba(98, 0, 234, 0.2) !important;
+}
+
+/* Button effects */
+button {
+    transition: all 0.3s ease !important;
+}
+
+/* Highlight animation for login form */
+@keyframes highlight {
+    0% {
+        box-shadow: 0 0 0 0 rgba(98, 0, 234, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(98, 0, 234, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(98, 0, 234, 0);
+    }
+}
+
+/* SweetAlert customization */
+.swal2-popup {
+    border-radius: 15px !important;
+    font-family: Arial, sans-serif !important;
+}
+
+.swal2-title {
+    color: #6200ea !important;
+}
+
+.swal2-confirm {
+    background-color: #6200ea !important;
+}
+
+/* Loading animation */
+.animated {
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -20px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.fadeInDown {
+    animation-name: fadeInDown;
+}
+
+/* Add these new styles */
+
+/* Forgot Password Styles */
+.forgot-password-form {
+    padding: 20px;
+    text-align: center;
+}
+
+.forgot-password-form p {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.forgot-password-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.forgot-password-form input:focus {
+    border-color: #6200ea;
+    box-shadow: 0 0 0 2px rgba(98, 0, 234, 0.1);
+    outline: none;
+}
+
+.reset-success {
+    text-align: center;
+    padding: 20px;
+}
+
+.reset-success p {
+    color: #666;
+    margin: 10px 0;
+}
+
+.reset-success strong {
+    color: #6200ea;
+    display: block;
+    margin: 15px 0;
+    font-size: 16px;
+}
+
+/* Update the forgot password link style */
+.sign-in a.forgot-password {
+    color: #6200ea;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-top: 15px;
+    position: relative;
+}
+
+.sign-in a.forgot-password:hover {
+    color: #3700b3;
+    transform: translateY(-1px);
+}
+
+.sign-in a.forgot-password::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: #6200ea;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.sign-in a.forgot-password:hover::after {
+    transform: scaleX(1);
+}
+
+/* SweetAlert2 Custom Styles */
+.swal2-popup {
+    border-radius: 15px !important;
+    padding: 2em !important;
+}
+
+.swal2-title {
+    color: #6200ea !important;
+    font-size: 1.5em !important;
+}
+
+.swal2-html-container {
+    margin: 1em 1.6em 0.3em !important;
+}
+
+.swal2-confirm {
+    background-color: #6200ea !important;
+    border-radius: 5px !important;
+    padding: 12px 24px !important;
+}
+
+.swal2-cancel {
+    background-color: #888 !important;
+    border-radius: 5px !important;
+    padding: 12px 24px !important;
+}
+
+.swal2-input {
+    border: 1px solid #ddd !important;
+    border-radius: 5px !important;
+    margin: 1em 0 !important;
+}
+
+.swal2-input:focus {
+    border-color: #6200ea;
+    box-shadow: 0 0 0 2px rgba(98, 0, 234, 0.1);
+    outline: none;
+}
+
+/* Add these styles for Google Sign-In button */
+.google-signin {
+    width: 80% !important;
+    margin: 10px auto !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+#g_id_onload {
+    position: fixed;
+    top: -999px;
+    left: -999px;
+}
+
+.g_id_signin iframe {
+    width: 100% !important;
+}
+
+/* Add these styles for reset password functionality */
+.reset-password-container {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+.reset-password-container h2 {
+    color: #6200ea;
+    margin-bottom: 30px;
+}
+
+.reset-password-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.reset-password-container input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.reset-password-container input:focus {
+    border-color: #6200ea;
+    box-shadow: 0 0 0 2px rgba(98, 0, 234, 0.1);
+    outline: none;
+}
+
+.reset-password-container button {
+    padding: 12px;
+    background: #6200ea;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reset-password-container button:hover {
+    background: #3700b3;
+    transform: translateY(-2px);
+}
+
+.forgot-password-form {
+    text-align: center;
+    padding: 20px;
+}
+
+.reset-success {
+    text-align: center;
+    padding: 20px;
+}
+
+.reset-success strong {
+    color: #6200ea;
+    display: block;
+    margin: 15px 0;
+}
